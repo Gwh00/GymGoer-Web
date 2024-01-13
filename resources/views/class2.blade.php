@@ -45,7 +45,7 @@
                             <h4 class="card-title">{{ $ClassName->class_name }}</h4>
                             <p class="card-text">Class Code: {{ $ClassName->class_code }}</p>
                             <p class="card-text">Class Category: {{ $ClassName->class_description }}</p>
-                            
+                            <p class="card-text">Trainer: {{ $ClassName->coachname }}</p>
                         </div>
                     </div><br>
                 </div>

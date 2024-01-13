@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\PersonalTrainer;
+use App\Models\Classname;
 
 class PersonalTrainerController extends Controller
 {
@@ -24,6 +25,14 @@ class PersonalTrainerController extends Controller
         return view('addpersonaltrainerform');
     }
 
+    public function showDetail()
+    {
+        $personaltrainer = PersonalTrainer::all();
+        $class = ClassName::all();
+        return view('detail', compact('personaltrainer','class'));
+        
+    }
+
     public function storePersonalTrainer(Request $request)
     {
         // Validate the input
@@ -31,6 +40,7 @@ class PersonalTrainerController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255|', // changed to personal_trainers
             'certification' => 'required|string|max:255',
+            'phone' => 'required|string|max:20',
         ]);
     
         // Create a new personal trainer record in the database
@@ -53,6 +63,7 @@ class PersonalTrainerController extends Controller
             'name' => 'required|string',
             'email' => 'required|email',
             'certification' => 'required|string',
+            'phone' => 'required|string',
         ]);
 
         $personalTrainer = PersonalTrainer::findOrFail($id);
@@ -61,6 +72,7 @@ class PersonalTrainerController extends Controller
         $email = $request->input('email');
         $newName = $request->input('name');
         $newCertification = $request->input('certification');
+        $newphone = $request->input('phone');
 
         $personalTrainer = PersonalTrainer::where('email', $email)->first();
 
@@ -68,6 +80,7 @@ class PersonalTrainerController extends Controller
             $personalTrainer->name = $request->input('name');
             $personalTrainer->email = $request->input('email');
             $personalTrainer->Certification = $request->input('certification');
+            $personalTrainer->phone = $request->input('phone');
             $personalTrainer->save();
             return redirect()->route('personaltrainer')->with('success', 'Personal Trainer updated successfully.');
         } else {

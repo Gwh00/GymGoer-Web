@@ -43,13 +43,11 @@
 
             @foreach ($personaltrainer as $personaltrainerMember)
                 <div class="col-md-5 middle-space" style="background: linear-gradient(to right, grey 5%, black 20%);">
+                 <a href="{{ route('detail',['id' => $personaltrainerMember->id]) }}" style="text-decoration: none; color: inherit;"> 
                     <br>
                     <div class="card bg-dark text-light shadow">
                         <div class="card-body">
-                            <h4 class="card-title">{{ $personaltrainerMember->name }}</h4>
-                            <p class="card-text">Email: {{ $personaltrainerMember->email }}</p>
-                            <p class="card-text">Certification: {{ $personaltrainerMember->certification }}</p>
-                            
+                            <h4 class="card-title">{{ $personaltrainerMember->name }}</h4>  
                             <br>
                             <br>
                         </div>

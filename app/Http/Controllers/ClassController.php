@@ -24,9 +24,10 @@ class ClassController extends Controller
     {
         // Validate the incoming request data
         $data = $request->validate([
-            'class_name' => 'required|string',
+            'class_name' => 'required|string|max:255',
             'class_code' => 'required|string|unique:class_names',
-            'class_description' => 'required|string',
+            'class_description' => 'required|string|max:1000',
+            'coachname' => 'required|string|max:255',
         ]);
 
         // Create a new ClassName model and save it to the database
@@ -50,6 +51,7 @@ class ClassController extends Controller
             'class_name' => 'required|string|max:255',
             'class_code' => 'required|string|max:50',
             'class_description' => 'required|string|max:1000',
+            'coachname' => 'required|string|max:255',
         ]);
 
         // Create and store the class using the validated data
@@ -74,6 +76,7 @@ class ClassController extends Controller
             'class_name' => 'required|string|max:255',
             'class_code' => 'required|string|max:50',
             'class_description' => 'required|string|max:1000',
+            'coachname' => 'required|string|max:255',
         ]);
 
         $classDetail = ClassName::findOrFail($id);

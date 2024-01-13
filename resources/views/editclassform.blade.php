@@ -61,6 +61,12 @@
                                 <textarea id="class_description" class="form-control" name="class_description" required>{{ $classDetail->class_description }}</textarea>
                             </div>
 
+                            <div class="form-group" align="left">
+                                <label for="coachname">Trainer:</label>
+                                <input type="text" id="coachname" class="form-control" name="coachname"
+                                    value="{{ $classDetail->coachname }}" required>
+                            </div>
+
                             <div class="form-group">
                                 <button type="submit" class="btn btn-success">Update</button>
                             </div>

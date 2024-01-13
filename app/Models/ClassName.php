@@ -9,5 +9,10 @@ class ClassName extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['class_name', 'class_code', 'class_description'];
+    protected $fillable = ['class_name', 'class_code', 'class_description', 'coachname'];
+
+    public function personalTrainer()
+    {
+        return $this->belongsTo(PersonalTrainer::class);
+    }
 }

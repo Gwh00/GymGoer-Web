@@ -13,6 +13,7 @@ class CreateClassNamesTable extends Migration
             $table->string('class_name');
             $table->string('class_code')->unique();
             $table->text('class_description');
+            $table->string('coachname')->nullable();
             $table->timestamps();
         });
     }

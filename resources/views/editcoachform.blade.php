@@ -64,6 +64,12 @@
                                     value="{{ $personaltrainerMember->certification }}" required>
                             </div>
 
+                            <div class="form-group" align="left">
+                                <label for="phone">Phone No:</label>
+                                <input type="text" id="phone" class="form-control" name="phone"
+                                    value="{{ $personaltrainerMember->phone }}" required>
+                            </div>
+
                             <div class="form-group">
                                 <button type="submit" class="btn btn-success">Update</button>
                             </div>

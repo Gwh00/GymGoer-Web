@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\View;
+use Illuminate\Http\Request;
+
 use App\Http\Controllers\{
     HomeController,
     AdminController,
@@ -10,11 +13,16 @@ use App\Http\Controllers\{
     TimetableController,
     CustomerController,
     ChoiceController,
+    CheckInController,
+    CheckActionController,
     TrainerController,
     UserTimetableController,
     InBodyRecordController,
+    UserCheckController,
     UserProfileController,
-    QrCodeController
+    QrCodeController,
+    QRController
+
 };
 
 Route::view('/', 'home');
@@ -34,6 +42,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/editpersonaltrainer/{id}', [PersonalTrainerController::class, 'edit'])->name('editpersonaltrainer');
     Route::put('/updatepersonaltrainer/{id}', [PersonalTrainerController::class, 'updatepersonaltrainer'])->name('updatepersonaltrainer');
     Route::delete('/personaltrainer/{id}', [PersonalTrainerController::class, 'destroy'])->name('deletepersonaltrainer');
+    Route::get('/detail/{id}',[PersonalTrainerController::class,'showDetail'])->name('detail');
 
     // Class routes
     Route::get('/classes/create', [ClassController::class, 'showClass'])->name('classes.create');
@@ -72,5 +81,19 @@ Route::middleware(['auth'])->group(function () {
     // QR code routes 
     Route::get('/generate-qrcode/{userId}', [QRCodeController::class, 'generateQRCode'])->name('generate-qrcode');
     Route::get('/generate-qr-code', 'QRCodeController@generateQrCode')->name('generate.qr.code');
-
+    Route::get('/qr-page-target', function () {
+        return view('qr_page_target');
+    });
+    Route::get('/qr-page-target/{userId}', function ($userId) {
+        $userData = DB::table('users')->where('id', $userId)->first();
+        $user = $userData ? $userData->name : 'Unknown User';
+        $checkInOut = $userData ? $userData->status : 'Unknown Status';
+        return view('qr_page_target', compact('user', 'checkInOut'));
+    })->name('qr-page-target');
+    Route::post('/check-action', [CheckActionController::class, 'handleAction'])->name('check-action');
+    Route::post('/user/check-in', [UserCheckController::class, 'checkIn'])->name('user.check-in');
+    Route::post('/user/check-out', [UserCheckController::class, 'checkOut'])->name('user.check-out');
+    
+    Route::get('/user-profile', [UserProfileController::class, 'showUserProfile'])->name('user-profile');
+    Route::post('/check-action', [CheckActionController::class, 'handleAction'])->name('check-action');
 });

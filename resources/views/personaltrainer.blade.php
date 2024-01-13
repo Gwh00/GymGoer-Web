@@ -49,6 +49,7 @@
                             <h4 class="card-title">{{ $personaltrainerMember->name }}</h4>
                             <p class="card-text">Email: {{ $personaltrainerMember->email }}</p>
                             <p class="card-text">Certification: {{ $personaltrainerMember->certification }}</p>
+                            <p class="card-text">phone:0{{ $personaltrainerMember->phone }}</p>
                             <div class="row">
                                 <div class="col-md-4"></div>
                                 <div class="col-md-2">

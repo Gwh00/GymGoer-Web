@@ -66,6 +66,13 @@
                             </div>
 
                             <div class="form-group row">
+                                <label for="coachname" class="col-sm-3 col-form-label text-right">Trainer:</label>
+                                <div class="col-sm-9">
+                                <input type="text" class="form-control" id="coachname" name="coachname" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
                                 <div class="col-md-3"></div>
                                 <div class="col-sm-9 offset-sm-3">
                                     <button type="submit" class="btn btn-primary btn-block">Add Class</button>

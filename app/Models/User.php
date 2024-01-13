@@ -24,7 +24,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'age', 'password', 'is admin',
+        'name', 'email', 'age', 'password', 'is_admin',
     ];
 
     /**
@@ -49,4 +49,39 @@ class User extends Authenticatable
     {
         return $this->hasOne(UserProfile::class);
     }
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
+
+    public function getNameAttribute($value)
+    {
+        return strtoupper($value);
+    }
+
+    public function setEmailAttribute($value)
+    {
+        $this->attributes['email'] = strtolower($value);
+    }
+    
+
+    public function scopeActive($query)
+    {
+        return $query->where('active', 1);
+    }
+
+    public function isAdmin()
+    {
+        return $this->is_admin; // Assuming 'is_admin' is a column in your users table
+    }
+
+    protected static function booted()
+    {
+        static::created(function ($user) {
+            // Action to perform after a user is created
+        });
+    }
+
+    
 }

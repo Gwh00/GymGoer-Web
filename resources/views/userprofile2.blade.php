@@ -65,7 +65,9 @@
                 </div>
             </div>
             <div class="col-md-5">
-                <img src="/qrCode.png" alt="QR Code">
+                
+                {{$qrCode}}
+
             </div>
         </div>
     </div>
